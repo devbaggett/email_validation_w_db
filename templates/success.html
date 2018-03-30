@@ -1,0 +1,45 @@
+<html>
+<head>
+  <title>All Emails</title>
+</head>
+<body>
+
+<!-- with all the data we can then construct a more structured output -->
+  <h2>Email Addresses Entered</h2>
+  <!-- with messages here helps us declare a variable in our template that we can use within a specific scope -->
+  {% with messages = get_flashed_messages() %}
+    <!-- check if there are even any messages that came back from the get_flashed_messages() function -->
+    {% if messages %}
+      <!-- loop through all messages -->
+      {% for message in messages %}
+        <!-- print the messages one by one each in a paragraph tag -->
+        <p>{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <hr>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Created At</th>
+      </tr>
+    {% for email in emails: %}
+      <tr>
+        <td>{{ email['id'] }}</td>
+        <td>{{ email['email'] }}</td>
+        <td>{{ email['created_at'] }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+
+    <hr>
+
+    <form action="/remove" method="POST">
+      Enter the ID for the email you wish to delete: <input type="text" name="friend_id">
+      <input type="submit" value="Remove Email">
+    </form>
+
+
+</body>
+</html>

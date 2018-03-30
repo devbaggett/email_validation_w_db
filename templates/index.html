@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Email Validation with/db</title>
+</head>
+<body>
+	<!-- with messages here helps us declare a variable in our template that we can use within a specific scope -->
+  {% with messages = get_flashed_messages() %}
+  	<!-- check if there are even any messages that came back from the get_flashed_messages() function -->
+  	{% if messages %}
+  		<!-- loop through all messages -->
+  		{% for message in messages %}
+  			<!-- print the messages one by one each in a paragraph tag -->
+  			<p>{{ message }}</p>
+  		{% endfor %}
+  	{% endif %}
+  {% endwith %}
+	<form action="/process" method="POST">
+      Email: <input type="text" name="email"><br>
+      <input type="submit" name="Submit">
+  </form>
+  
+
+
+   	
+</body>
+</html>
